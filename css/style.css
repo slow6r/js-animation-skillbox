@@ -131,6 +131,16 @@ img {
 }
 
 /* Стили для линий крестика */
+
+.cross {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
 .cross__line--1,
 .cross__line--2 {
   display: none;
@@ -138,13 +148,11 @@ img {
 
 .cross__line--1 {
   top: 50%;
-  left: -10%;
   transform: translateY(-50%) rotate(45deg);
 }
 
 .cross__line--2 {
   top: 50%;
-  left: -10%;
   transform: translateY(-50%) rotate(-45deg);
 }
 
@@ -187,6 +195,31 @@ img {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+/*menu*/
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: none;
+  z-index: 2;
+  overflow-y: auto;
+  opacity: 0;
+}
+
+.menu__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.menu__nav, .social, .sub-menu {
+  margin-bottom: 40px;
 }
 
 .hero__left {

@@ -8,19 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const burgerLines = document.querySelectorAll('.burger__line');
-    const crossLines = document.querySelectorAll('.cross__line');
-    let isOpen = false;
-  
-    burger.addEventListener('click', () => {
-      if (isOpen) {
-        gsap.to(burgerLines, { opacity: 1, duration: 0.2 });
-        gsap.to(crossLines, { display: 'none', duration: 0.2 });
-      } else {
-        gsap.to(burgerLines, { opacity: 0, duration: 0.2 });
-        gsap.to(crossLines, { display: 'block', duration: 0.2 });
-      }
-      isOpen = !isOpen;
-    });
+  const tl = gsap.timeline({ paused: true });
+  const burger = document.querySelector('.burger');
+  const menu = document.querySelector('.menu');
+  let isOpen = false;
+  tl.to(menu, { display: 'block', opacity: 1, duration: 0.25, }),
+  tl.from('.menu__left', {duration: 0.8, y: +30, opacity: 1, ease: 'power2.out'}),
+  tl.from('.menu__right', {duration: 0.8, y: +30, opacity: 1,ease: 'power2.out'});
+
+
+  burger.addEventListener('click', () => {
+    if (isOpen) {
+      tl.reverse();
+    } else {
+      tl.play();
+    }
+    isOpen = !isOpen;
   });
+
+  // Кнопка закрытия меню
+  const closeBtn = document.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+    if (isOpen) {
+      tl.reverse(0.25);
+      isOpen = false;
+    }
+  });
+});
